@@ -10,6 +10,7 @@ import {
   useGetAllBlogsQuery,
 } from "../services/blogApi/blog";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface BlogValueProps {
   content: string;
@@ -24,6 +25,8 @@ const Navbar = memo(() => {
   const handleOpenModal = () => {
     setModalOpen(true);
   };
+
+  const navigate = useNavigate();
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -52,7 +55,9 @@ const Navbar = memo(() => {
   return (
     <div className="flex flex-row items-center justify-between px-3 py-2 border-b-[1px]">
       <div className="flex flex-row items-center gap-8">
-        <h1 className="text-3xl font-bold">Thoughts</h1>
+        <h1 className="text-3xl font-bold cursor-pointer" onClick={() => navigate("/")}>
+          Thoughts
+        </h1>
         <div className="flex flex-row gap-2 items-center p-2 rounded-xl mt-1 bg-gray-50">
           <SearchIcon />
           <input

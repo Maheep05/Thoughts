@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignupMutation, useLoginMutation } from "../services/authApi/auth";
 import { toast } from "sonner";
 import { useHandleToken } from "../hooks/useHandleToken";
+import { AppDispatch } from "../services/redux/store";
+import { useDispatch } from "react-redux";
+import { setlogin } from "../services/features/authSlice";
 
 interface SignUpFormValues {
   firstName: string;
@@ -33,6 +36,7 @@ const AuthForm: FC<AuthFormProps> = memo(({ type }) => {
   const [login] = useLoginMutation();
   const { setToken } = useHandleToken();
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
 
   const inputConfig = useMemo(() => {
     const commonFields = [
@@ -120,26 +124,27 @@ const AuthForm: FC<AuthFormProps> = memo(({ type }) => {
     try {
       if (type === "signup") {
         const response = await signup(values).unwrap();
-        if (response) {
+        if (response?.token) {
           setToken(response.token);
-          toast.success("Account created Successfully !!");
+          dispatch(setlogin({ token: response.token }));
+          toast.success("Account created successfully!");
           navigate("/blogs");
+        } else {
+          toast.error("Error creating account.");
         }
-        toast.error("Error Creating account");
       } else {
         const response = await login(values).unwrap();
-        if (response) {
+        if (response?.token) {
           setToken(response.token);
-          toast.success("Account Logged In Successfully !!");
+          dispatch(setlogin({ token: response.token }));
+          toast.success("Logged in successfully!");
           navigate("/blogs");
+        } else {
+          toast.error("Error logging in.");
         }
-        toast.error("Error Logging In");
       }
     } catch (error) {
-      console.error(
-        `${type.charAt(0).toUpperCase() + type.slice(1)} failed:`,
-        error
-      );
+      toast.error(`Error: ${error}`);
     }
   };
 
