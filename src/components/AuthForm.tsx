@@ -144,7 +144,8 @@ const AuthForm: FC<AuthFormProps> = memo(({ type }) => {
         }
       }
     } catch (error) {
-      toast.error(`Error: ${error}`);
+      toast.error(`Please Try again later !!!`);
+      console.log(error);
     }
   };
 
