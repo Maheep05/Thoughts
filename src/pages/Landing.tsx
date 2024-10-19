@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, FC } from "react";
 import { useSpring, animated, config } from "react-spring";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Features } from "../components/Features";
@@ -7,7 +7,7 @@ import { Hero } from "../components/Hero";
 import { useSelector } from "react-redux";
 import { RootState } from "../services/redux/store";
 
-const Landing: React.FC = () => {
+const Landing: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
@@ -69,7 +69,7 @@ const Landing: React.FC = () => {
   );
 };
 
-const NavItem: React.FC<{ href: string; text: string }> = ({ href, text }) => (
+const NavItem: FC<{ href: string; text: string }> = ({ href, text }) => (
   <li>
     <a
       href={href}
@@ -80,7 +80,7 @@ const NavItem: React.FC<{ href: string; text: string }> = ({ href, text }) => (
   </li>
 );
 
-const FeaturedArticles: React.FC = () => (
+const FeaturedArticles: FC = () => (
   <section className="mb-24">
     <h2 className="text-3xl font-bold mb-8">Featured Articles</h2>
     <div className="grid md:grid-cols-2 gap-8">
@@ -100,7 +100,7 @@ const FeaturedArticles: React.FC = () => (
   </section>
 );
 
-const ArticleCard: React.FC<{
+const ArticleCard: FC<{
   title: string;
   author: string;
   date: string;
@@ -129,7 +129,7 @@ const ArticleCard: React.FC<{
   );
 };
 
-const CTA: React.FC = () => (
+const CTA: FC = () => (
   <section className="text-center mb-24">
     <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our Community</h2>
     <p className="text-xl mb-8 text-gray-600">
@@ -139,7 +139,7 @@ const CTA: React.FC = () => (
   </section>
 );
 
-const Footer: React.FC = () => (
+const Footer: FC = () => (
   <footer className="bg-gray-100 py-12">
     <div className="container mx-auto px-4">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
