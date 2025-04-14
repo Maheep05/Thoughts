@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getToken } from "../../utils/getToken";
 
-const { VITE_AUTH_BASE_URL, VITE_AUTH_USER_LOG, VITE_AUTH_USER_NEWS } =
+const { VITE_AUTH_BASE_URL, VITE_AUTH_USER_LOG, VITE_AUTH_USER_NEW } =
   import.meta.env as unknown as Record<string, string>;
 
 export const authApi = createApi({
@@ -27,7 +27,7 @@ export const authApi = createApi({
     }),
     signup: builder.mutation({
       query: (userInfo) => ({
-        url: `${VITE_AUTH_USER_NEWS}`,
+        url: `${VITE_AUTH_USER_NEW}`,
         method: "POST",
         body: userInfo,
       }),

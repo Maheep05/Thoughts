@@ -74,13 +74,13 @@ const Navbar = memo(() => {
           onClickHandler={handleOpenModal}
           startIcon={<EditIcon />}
           text="Write"
-          type="button" // Use button instead of submit
+          type="button" 
         />
         <Button
           variant="ghost"
           onClickHandler={() => console.log("Click")}
           startIcon={<BellIcon />}
-          type="button" // Use button instead of submit
+          type="button" 
         />
       </div>
 

@@ -7,14 +7,18 @@ interface BlogCardProps {
   description: string;
   content: string;
   publishedDate: string;
+  onClick: () => void;
 }
 
 const BlogCard: FC<BlogCardProps> = memo(
-  ({ authorName, title, description, content, publishedDate }) => {
+  ({ authorName, title, description, content, publishedDate, onClick }) => {
     return (
-      <div className="w-1/3 flex flex-col justify-center border-b-[1px] mx-auto p-6 bg-white  rounded-lg mb-6">
+      <div
+        className="w-2/4 flex cursor-pointer flex-col justify-center border-b-[1px] mx-auto p-6 bg-white  rounded-lg mb-6"
+        onClick={onClick}
+      >
         <div className="flex flex-row items-center mb-4">
-          <div className="w-7 h-7 bg-indigo-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">
+          <div className="w-7 h-7 bg-black text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">
             {getInitials(authorName)}
           </div>
           <h2 className="text-md font-semibold">{authorName}</h2>

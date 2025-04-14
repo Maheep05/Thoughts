@@ -12,7 +12,7 @@ interface NewBlogResponse {
   success: boolean;
   message: string;
   blogPost: {
-    id: string; 
+    id: string;
     description: string;
     title: string;
     content: string;
@@ -35,13 +35,16 @@ interface GetBlogsResponse {
 }
 
 interface GetBlogByIdResponse {
-  success: boolean;
-  blogPost: {
+  response: {
     id: string;
     title: string;
     description: string;
     content: string;
     createdAt: string;
+    author: {
+      firstName: string;
+      lastName: string;
+    };
   };
 }
 
